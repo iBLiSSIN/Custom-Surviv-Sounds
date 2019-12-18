@@ -1,0 +1,43 @@
+
+{
+	"name": "Custom Surviv.io Sounds",
+	"version": "1.1.0",
+	"description": "This allows users to use inject custom sounds into the game.",
+	"manifest_version": 2,
+	"icons": {
+		"64": "icon.png"
+	},
+	"permissions": [
+		"*://surviv.io/",
+		"webRequest",
+		"webRequestBlocking",
+		"tabs",
+		"declarativeContent",
+		"activeTab"
+	],
+	"externally_connectable": {
+		"matches": [
+			"*://surviv.io/*"
+		]
+	},
+	"background": {
+		"scripts": [
+			"background.js"
+		],
+		"persistent": true
+	},
+	"web_accessible_resources": [
+		"/*",
+		"player_bullet_hit_01.mp3"
+	],
+	"content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+	"content_scripts": [
+		{
+			"matches": [
+				"*://surviv.io/*"
+			],
+			"js": ["content.js"],
+			"run_at": "document_start"
+		}
+	]
+}
